@@ -62,6 +62,26 @@ class LinkedList {
     }
     return current.data;
   }
+
+  pop() {
+    if (!this.#head) {
+      return null;
+    }
+    let current = this.#head;
+    let popped = null;
+    if (!current.next) {
+      popped = current;
+      this.#head = null;
+    } else {
+      while (current.next.next) {
+        current = current.next;
+      }
+      popped = current.next;
+    }
+    current.next = null;
+    this.#size--;
+    return popped.data;
+  }
 }
 
 const vowels = new LinkedList();
@@ -74,4 +94,10 @@ vowels.prepend("a");
 // console.log("Head after prepend: ", vowels.head());
 // console.log(vowels.getSize());
 // console.log("Vowel tail:", vowels.tail());
-console.log("Vowel at index 0:", vowels.at(0));
+// console.log("Vowel at index 0:", vowels.at(0));
+console.log("Vowel at index 3:", vowels.at(3));
+console.log("Vowel at index 4:", vowels.at(4));
+console.log("Popped vowel:", vowels.pop());
+console.log("Popped vowel:", vowels.pop());
+console.log("Vowel at index 3 (Before popped):", vowels.at(3));
+console.log("Vowel at index 4 (Before popped):", vowels.at(4));
