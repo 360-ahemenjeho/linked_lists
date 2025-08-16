@@ -82,6 +82,20 @@ class LinkedList {
     this.#size--;
     return popped.data;
   }
+
+  contains(data) {
+    if (!this.#head) {
+      return false;
+    }
+    let current = this.#head;
+    while (current.next) {
+      if (current.data === data) {
+        return true;
+      }
+      current = current.next;
+    }
+    return current.data === data;
+  }
 }
 
 const vowels = new LinkedList();
@@ -95,9 +109,11 @@ vowels.prepend("a");
 // console.log(vowels.getSize());
 // console.log("Vowel tail:", vowels.tail());
 // console.log("Vowel at index 0:", vowels.at(0));
-console.log("Vowel at index 3:", vowels.at(3));
-console.log("Vowel at index 4:", vowels.at(4));
-console.log("Popped vowel:", vowels.pop());
-console.log("Popped vowel:", vowels.pop());
-console.log("Vowel at index 3 (Before popped):", vowels.at(3));
-console.log("Vowel at index 4 (Before popped):", vowels.at(4));
+// console.log("Vowel at index 3:", vowels.at(3));
+// console.log("Vowel at index 4:", vowels.at(4));
+// console.log("Popped vowel:", vowels.pop());
+// console.log("Popped vowel:", vowels.pop());
+// console.log("Vowel at index 3 (Before popped):", vowels.at(3));
+// console.log("Vowel at index 4 (Before popped):", vowels.at(4));
+console.log("Contains a?", vowels.contains("a"));
+console.log("Contains b?", vowels.contains("b"));
