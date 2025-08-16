@@ -156,6 +156,27 @@ class LinkedList {
     this.#size++;
     return index;
   }
+
+  removeAt(index) {
+    if (index < 0 || index >= this.#size) {
+      return null;
+    }
+    let current = this.#head;
+    if (index === 0) {
+      this.#head = current.next;
+      return current.data;
+    }
+    let previous = null;
+    let i = 0;
+    while (i < index) {
+      previous = current;
+      current = current.next;
+      i++;
+    }
+    previous.next = current.next;
+    this.#size--;
+    return current.data;
+  }
 }
 
 const vowels = new LinkedList();
@@ -180,5 +201,6 @@ vowels.prepend("a");
 // console.log("Find index of 'b':", vowels.find("b"));
 // console.log("Find index of 'a':", vowels.find("a"));
 // console.log("Stringified vowels: ", vowels.toString());
-console.log("Insert at 1: ", vowels.insertAt(1, "k"));
+// console.log("Insert at 1: ", vowels.insertAt(1, "k"));
+console.log("Insert at 1: ", vowels.removeAt(1));
 console.log("Stringified vowels: ", vowels.toString());
