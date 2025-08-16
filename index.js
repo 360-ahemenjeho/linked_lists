@@ -112,6 +112,22 @@ class LinkedList {
     }
     return current.data === data ? index : -1;
   }
+
+  toString() {
+    if (!this.#head) {
+      return "";
+    }
+    let current = this.#head;
+    let result = "";
+    while (current) {
+      result += current.data;
+      if (current.next) {
+        result += " -> ";
+      }
+      current = current.next;
+    }
+    return result;
+  }
 }
 
 const vowels = new LinkedList();
@@ -133,5 +149,6 @@ vowels.prepend("a");
 // console.log("Vowel at index 4 (Before popped):", vowels.at(4));
 // console.log("Contains a?", vowels.contains("a"));
 // console.log("Contains b?", vowels.contains("b"));
-console.log("Find index of 'b':", vowels.find("b"));
-console.log("Find index of 'a':", vowels.find("a"));
+// console.log("Find index of 'b':", vowels.find("b"));
+// console.log("Find index of 'a':", vowels.find("a"));
+console.log("Stringified vowels: ", vowels.toString());
