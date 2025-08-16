@@ -128,6 +128,34 @@ class LinkedList {
     }
     return result;
   }
+
+  insertAt(index, data) {
+    if (index < 0 || index > this.#size) {
+      return -1;
+    }
+    if (index === 0) {
+      this.prepend(data);
+      return 0;
+    }
+    if (index === this.#size) {
+      this.append(data);
+      return index;
+    }
+    let current = this.#head;
+    let previous = null;
+    let i = 0;
+    while (i < index) {
+      previous = current;
+      current = current.next;
+      i++;
+    }
+
+    const newNode = new Node(data, current);
+    previous.next = newNode;
+
+    this.#size++;
+    return index;
+  }
 }
 
 const vowels = new LinkedList();
@@ -151,4 +179,6 @@ vowels.prepend("a");
 // console.log("Contains b?", vowels.contains("b"));
 // console.log("Find index of 'b':", vowels.find("b"));
 // console.log("Find index of 'a':", vowels.find("a"));
+// console.log("Stringified vowels: ", vowels.toString());
+console.log("Insert at 1: ", vowels.insertAt(1, "k"));
 console.log("Stringified vowels: ", vowels.toString());
